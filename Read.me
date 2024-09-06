@@ -20,3 +20,52 @@ c) 0, 1, 4, 9, 16, 25, 36, 49
 d) 4, 16, 36, 64, 100
 e) 1, 1, 2, 3, 5, 8, 13
 f) 2, 10, 12, 16, 17, 18, 19, 20
+
+-------------------------------------------------------------------------------
+
+3) 
+Resultado: *Linguagem escolhida foi a javascript* 
+
+const faturamentoDiario = [200, 300, 0, 500, 0, 0, 150, 450, 600, 0, 0, 0, 350]
+
+function calcularFaturamento(faturamentoDiario) {
+    let menorValor = Infinity
+    let maiorValor = -Infinity
+    let somaFaturamento = 0
+    let diasComFaturamento = 0
+    
+    for (let faturamento of faturamentoDiario) {
+        if (faturamento > 0) {
+            menorValor = Math.min(menorValor, faturamento)
+            maiorValor = Math.max(maiorValor, faturamento)
+            somaFaturamento += faturamento
+            diasComFaturamento++
+        }
+    }
+
+    const mediaFaturamento = somaFaturamento / diasComFaturamento;
+
+    let diasAcimaDaMedia = 0
+    for (let faturamento of faturamentoDiario) {
+        if (faturamento > mediaFaturamento) {
+            diasAcimaDaMedia++
+        }
+    }
+
+    return {
+        menorValor,
+        maiorValor,
+        diasAcimaDaMedia
+    }
+}
+
+
+/*
+
+    MOSTRAR TODOS OS RESULTADOS
+
+*/
+const resultado = calcularFaturamento(faturamentoDiario)
+console.log("Menor valor:", resultado.menorValor)
+console.log("Maior valor:", resultado.maiorValor)
+console.log("Dias acima da média:", resultado.diasAcimaDaMedia)
