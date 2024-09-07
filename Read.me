@@ -69,3 +69,69 @@ const resultado = calcularFaturamento(faturamentoDiario)
 console.log("Menor valor:", resultado.menorValor)
 console.log("Maior valor:", resultado.maiorValor)
 console.log("Dias acima da média:", resultado.diasAcimaDaMedia)
+
+-------------------------------------------------------------------------------
+
+4) 
+Resultado:
+
+Tabela estados:
+ -id_estado(PK)
+ -codigo_estado
+ -nome_estado
+
+Tabela clientes
+-id_cliente(PK)
+-razao_social
+-id_estado(FK)
+
+Tabela tipo_telefone:
+-id_telefone(PK)
+-descricao
+
+Tabela telefones:
+-id_telefone(PK)
+-numero
+-id_cliente(FK)
+-id_tipo_telefone(FK)
+
+*ESTRUTURAS DAS TABELAS*
+
+CREATE TABLE estados (
+    id_estado INT PRIMARY KEY AUTO_INCREMENT,
+    codigo_estado VARCHAR(2) NOT NULL,
+    nome_estado VARCHAR(50) NOT NULL
+);
+
+
+CREATE TABLE clientes (
+    id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+    razao_social VARCHAR(100) NOT NULL,
+    id_estado INT,
+    FOREIGN KEY (id_estado) REFERENCES estados(id_estado)
+);
+
+
+CREATE TABLE tipos_telefone (
+    id_tipo_telefone INT PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR(50) NOT NULL
+);
+
+
+CREATE TABLE telefones (
+    id_telefone INT PRIMARY KEY AUTO_INCREMENT,
+    numero VARCHAR(15) NOT NULL,
+    id_cliente INT,
+    id_tipo_telefone INT,
+    FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
+    FOREIGN KEY (id_tipo_telefone) REFERENCES tipos_telefone(id_tipo_telefone)
+);
+
+
+*BUSCA QUE TRÁS TODOS OS CLIENTES DE SÃO PAULO*
+
+SELECT c.id_cliente, c.razao_social, t.numero
+FROM clientes c
+JOIN estados e ON c.id_estado = e.id_estado
+JOIN telefones t ON c.id_cliente = t.id_cliente
+WHERE e.codigo_estado = 'SP';
