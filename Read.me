@@ -135,3 +135,24 @@ FROM clientes c
 JOIN estados e ON c.id_estado = e.id_estado
 JOIN telefones t ON c.id_cliente = t.id_cliente
 WHERE e.codigo_estado = 'SP';
+
+-------------------------------------------------------------------------------
+
+5) 
+Resultado:
+
+- A velocididade do carro é 90 km/h
+- A velocidade do caminhão é 80 km/h
+- Cujo a distância entre a cidade de Ribeirão Preto x Barretos é 125km
+
+O carro vai ter um atraso de 15min acrescentando a passagem pelo os três pedágios
+
+Como o caminhão vai passar direto nos pedágios eles não irá perder tempo na estrada e com isso ganhando mais tempo a frente.
+
+Carro: 125km / 90 km/h = 1 hora e 23min + 15 min de pedágio irá ficar (1 hora e 38 min)
+
+Caminhão: 125km / 80 km/h = 1 hora e 33 min.
+
+Embora o carro seja mais rápido ele perde nos pedágios. E quantos eles se cruzam o caminhão ja percorreu uma distância maior.
+
+Resumindo, o caminhão viaja de maneira mais constante, enquanto o carro perde tempo nos pedágios. Por isso, o caminhão consegue percorrer mais distância e estará mais próximo de Ribeirão Preto quando eles se encontrarem.
